@@ -1,0 +1,84 @@
+﻿@model IEnumerable<IFootWebProject.Models.Evenement>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('body').bootstrapMaterialDesign();
+        $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+
+    });
+</script>
+
+<head>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+
+</head>
+<br/>
+<br/>
+<br/>
+<br/>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="col-lg-8 col-md-10 ml-auto mr-auto">
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th> @Html.DisplayNameFor(model => model.dateEvent)</th>
+                    <th> @Html.DisplayNameFor(model => model.heure)</th>
+                    <th> @Html.DisplayNameFor(model => model.Prix)</th>
+                    <th> @Html.DisplayNameFor(model => model.Etat)</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td class="text-center">1</td>
+                        <td> @Html.DisplayFor(modelItem => item.dateEvent)</td>
+                        <td> @Html.DisplayFor(modelItem => item.heure)</td>                        
+                        <td> @Html.DisplayFor(modelItem => item.Prix)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Etat)</td>
+                        <td> reserve </td>
+                        <td class="td-actions text-right">
+
+                            <button type="button" asp-action="Edit" asp-route-id="@item.id" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">edit</i>
+                            </button>
+                            <button type="button" asp-action="Delete" asp-route-id="@item.id" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                            <br>
+                            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+          
