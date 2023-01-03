@@ -56,6 +56,14 @@
                         <td> @Html.DisplayFor(modelItem => item.heure)</td>                        
                         <td> @Html.DisplayFor(modelItem => item.Prix)</td>
                         <td> @Html.DisplayFor(modelItem => item.Etat)</td>
+                        @{
+                            if(item.etat="active"){
+                                <td> <input type="submit" value="reserve" class="btn btn-success" /> </td>
+                            }
+                            else{
+                                <td> <input type="submit" value="reserve" class="btn btn-danger" /> </td>
+                            }
+                        }
                         <td> reserve </td>
                         <td class="td-actions text-right">
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IFootWebProject.Data;
 using IFootWebProject.Models;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace IFootWebProject.Controllers
 {
@@ -59,15 +60,29 @@ namespace IFootWebProject.Controllers
             return View();
         }
 
-        // POST: Evenements/Create
+        // POST: Evenements/Create [Bind("id,Prix,dateEvent,heure,Etat,idUtilisateur,idTerrain,idTypeEven")]
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Prix,dateEvent,heure,Etat,idUtilisateur,idTerrain,idTypeEven")] Evenement evenement)
+        public async Task<IActionResult> Create( Evenement evenement)
         {
+
+            
+                var liste = new Evenement();
+
+          
             if (ModelState.IsValid)
             {
+                liste.id = evenement.id;
+                liste.Prix = evenement.Prix;
+                liste.dateEvent = evenement.dateEvent;
+                liste.heure = evenement.heure;
+                liste.Etat = "active";
+                liste.idUtilisateur = 1;
+                liste.idTerrain = evenement.idTerrain;
+                liste.idTypeEven = evenement.idTypeEven;
+
                 _context.Add(evenement);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
